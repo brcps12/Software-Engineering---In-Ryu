@@ -1,6 +1,5 @@
 <?php
-
-require_once("common.php");
+require_once ("common.php");
 require_once ("lib/AjaxStdIO.php");
 $stdio = new AjaxStdIO();
 
@@ -21,14 +20,21 @@ function return_msg( $data ) {
 	exit;
 }
 
-if($stdio->getParam('mode') == 'currentTime') {
+$mode = $_SERVER['REQUEST_URI'];
+
+if($mode == '/api' || $mode == '/api/') {
+	header("Location: ./docs");
+	exit;
+}
+
+if($mode == '/api/currentTime') {
 	return_msg([
 		'result' => 'success',
 		'time' => time() * 1000
 	]);
 }
 
-if(substr($mode = $stdio->getParam('mode'), 0, 4) == '/api') {
+if(substr($mode, 0, 4) == '/api') {
 	$mode = str_replace('/', '\\', $mode);
 	if(class_exists($mode, true)) {
 		$res = (new $mode())->result;

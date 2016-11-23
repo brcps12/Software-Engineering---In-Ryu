@@ -14,11 +14,11 @@
     	var templatePath = "templates";
     	var controllerPath = "js/controller";
 
-    	$urlRouterProvider.otherwise('/main');
+    	$urlRouterProvider.otherwise('/');
 
     	$stateProvider
     		.state('main', {
-    			url: '/main',
+    			url: '/',
                 templateUrl: templatePath + '/main.tpl',
                 controller : 'mainController as rs',
                 resolve: {

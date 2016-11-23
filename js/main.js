@@ -14,14 +14,14 @@ var __APP_NAME__ = "SmartSeat";
 
 	// 상수 정의
 	myApp.constant('AppConfig', {
-		'ajaxUrl' : './api'
+		'ajaxUrl' : '.'
 	})
 
 	// 한글 입력 바로 되도록
 	myApp.config(['$provide', function ($provide) {
 		$provide.decorator('inputDirective', function($delegate, $log) {
-	    	//$log.debug('Hijacking input directive');
-	    	var directive = $delegate[0];
+			//$log.debug('Hijacking input directive');
+			var directive = $delegate[0];
 			angular.extend(directive.link, {
 				post: function(scope, element, attr, ctrls) {
 					element.on('compositionupdate', function (event) {
@@ -35,17 +35,35 @@ var __APP_NAME__ = "SmartSeat";
 	}]);
 
 	myApp.directive('ngEnter', function() {
-	    return function(scope, element, attrs) {
-	        element.bind("keydown keypress", function(event) {
-	            if(event.which === 13) {
-	                scope.$apply(function(){
-	                    scope.$eval(attrs.ngEnter, {'event': event});
-	                });
+		return function(scope, element, attrs) {
+			element.bind("keydown keypress", function(event) {
+				if(event.which === 13) {
+					scope.$apply(function(){
+						scope.$eval(attrs.ngEnter, {'event': event});
+					});
 
-	                event.preventDefault();
-	            }
-	        });
-	    };
+					event.preventDefault();
+				}
+			});
+		};
 	});
+
+	// 요청시 토큰 붙이기
+	myApp.config(['$httpProvider', function($httpProvider) {
+
+		$httpProvider.interceptors.push(['$q', '$localStorage', 'AppConfig' , function ($q, $localStorage, AppConfig) {
+			return {
+				'request': function (config) {
+					if(config.url.substr(0, 4) == '/api') {
+						config.url = AppConfig.ajaxUrl + config.url;
+					}
+					return config;
+				},
+				'responseError': function (response) {
+					return $q.reject(response);
+				}
+			};
+		}]);
+	}]);
 
 })(__APP_NAME__);
