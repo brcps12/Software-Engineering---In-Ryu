@@ -11,14 +11,14 @@
 
     function stateConfig($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $locationProvider) {
 
-    	var templatePath = "templates";
-    	var controllerPath = "js/controller";
+    	var templatePath = "/templates";
+    	var controllerPath = "/js/controller";
 
     	$urlRouterProvider.otherwise('/');
 
     	$stateProvider
-    		.state('main', {
-    			url: '/',
+            .state('main', {
+                url: '/',
                 templateUrl: templatePath + '/main.tpl',
                 controller : 'mainController as rs',
                 resolve: {
@@ -27,7 +27,18 @@
                     }]
                 },
                 noLoading: true
-    		})
+            })
+            .state('login', {
+                url: '/login',
+                templateUrl: templatePath + '/login.tpl',
+                controller : 'loginController as rs',
+                resolve: {
+                    loadPlugin : ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load(controllerPath + "/login.controller.js");
+                    }]
+                },
+                noLoading: true
+            })
     }
 	
 })(__APP_NAME__);

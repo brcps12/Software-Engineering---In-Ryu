@@ -42,12 +42,14 @@ class DB_mysqli extends mysqli
 		parent::close();
 	}
 
-	public function error_query ( $UserID , $Type , $Text ) {
-		$QryInsertError   = "INSERT INTO errors SET ";
-		$QryInsertError  .= "`error_sender` = '".$this->sql_escape($UserID)."', ";
-		$QryInsertError  .= "`error_time` = '".time()."', ";
-		$QryInsertError  .= "`error_type` = '".$Type."', ";
-		$QryInsertError  .= "`error_text` = '".  $this->sql_escape($Text)  ."';";
+	public function error_query ( $Type , $Text ) {
+		$QryInsertError = "
+			INSERT INTO errors
+			SET 
+				`error_time` = '" . time() . "',
+				`error_type` = '" . $Type . "',
+				`error_text` = '" . $this->sql_escape($Text) . "'
+		";
 		$this->query( $QryInsertError , "error" );
 	}
 
@@ -65,16 +67,18 @@ class DB_mysqli extends mysqli
 		{
 			$this->time	+= (microtime(true) - $Timer);
 			$this->queryCount++;
+
 			return $result;
 		}
 		else
 		{
 			global $user;
-//			echo $resource;
+
 			$errno = $this->errno;
-			//echo $this->errno;
-			if($Type != 'error') $this->error_query($user['userId'],"SQL Error","SQL Error: ".$this->error."<br><br>Query Code: ".$resource);
-			throw new \Exception("서버 에러가 발생하였습니다.", $errno);
+
+			if($Type != 'error') $this->error_query("SQL Error","SQL Error: " . $this->error . "<br><br>Query Code: " . $resource);
+
+			throw new \Exception("데이터베이스 에러가 발생하였습니다.", $errno);
 		}
 		return;
 
@@ -93,16 +97,21 @@ class DB_mysqli extends mysqli
 		{
 			$this->time	+= (microtime(true) - $Timer);
 			$this->queryCount++;
+
 			$Return = $result->fetch_array(MYSQLI_ASSOC);
 			$result->close();
+
 			return $Return;
 		}
 		else
 		{
 			global $user;
+
 			$errno = $this->errno;
-			$this->error_query($user['userId'],"SQL Error","SQL Error: ".$this->error."<br><br>Query Code: ".$resource);
-			throw new \Exception("서버 에러가 발생하였습니다.", $errno);
+
+			$this->error_query($user['userId'],"SQL Error","SQL Error: " . $this->error . "<br><br>Query Code: " . $resource);
+			
+			throw new \Exception("데이터베이스 에러가 발생하였습니다.", $errno);
 		}
 		return;
 
@@ -321,9 +330,12 @@ class DB_mysqli extends mysqli
 		if ($this->errno)
 		{
 			global $user;
+
 			$errno = $this->errno;
-			$this->error_query($user['userId'],"SQL Error","SQL Error: ".$this->error."<br><br>Query Code: ".$resource);
-			throw new \Exception("서버 에러가 발생하였습니다.", $errno);
+
+			$this->error_query($user['userId'],"SQL Error","SQL Error: " . $this->error . "<br><br>Query Code: " . $resource);
+
+			throw new \Exception("데이터베이스 에러가 발생하였습니다.", $errno);
 		}
 	}
 
@@ -332,38 +344,39 @@ class DB_mysqli extends mysqli
 		return $this->queryCount;
 	}
 
-	// $db->save_sql(DOCUMENT_LIST,$DocIndex,array('link-id'),array_keys($DocIndex));
 	public function save_sql($TBName,$array,$keys,$elements,$onlyText=false) {
 		global $db;
-		$QryInsertAbstract  = "UPDATE ".$TBName." SET ";
-	//	$size = sizeof($keys);
-	//	for($i=0;$i<$size;$i++){
-	//		$key = $keys[$i];
+
+		$QryInsertAbstract  = "UPDATE " . $TBName . " SET ";
+
 		foreach($keys as $key) {
+
 			if(is_null($array[$key])) {
-				$WHERE[] = "`".$key."` IS NULL";
+
+				$WHERE[] = "`" . $key . "` IS NULL";
+
 			} else {
-				$WHERE[] = "`".$key."` = '".((is_array($array[$key])) ? ( (sizeof($array[$key]) > 0) ? $this->sql_escape(base64_encode(gzdeflate(serialize($array[$key]),9))) : '' ) : $this->sql_escape($array[$key]))."'";
+
+				$WHERE[] = "`" . $key . "` = '" . ((is_array($array[$key])) ? ( (sizeof($array[$key]) > 0) ? $this->sql_escape(base64_encode(gzdeflate(serialize($array[$key]),9))) : '' ) : $this->sql_escape($array[$key])) . "'";
 			}
-		//	unset($elements[array_search($key,$elements)]);
+
 		}
 		$QueryList = array();
-//		$elements = array_values($elements);
-//		$size = sizeof($elements);
-//		for($i=0;$i<$size;$i++) if(!in_array($elements[$i],$keys)) {
-//			$key = $elements[$i];
+
 		foreach($elements as $key) {
 			if(is_null($array[$key])) {
-				$QueryList[] = "`".$key."` = NULL";
+				$QueryList[] = "`" . $key . "` = NULL";
 			} else {
-				$QueryList[] = "`".$key."` = '".((is_array($array[$key])) ? ( (sizeof($array[$key]) > 0) ? $this->sql_escape(base64_encode(gzdeflate(serialize($array[$key]),9))) : '' ) : $this->sql_escape($array[$key]))."'";
+				$QueryList[] = "`" . $key . "` = '" . ((is_array($array[$key])) ? ( (sizeof($array[$key]) > 0) ? $this->sql_escape(base64_encode(gzdeflate(serialize($array[$key]),9))) : '' ) : $this->sql_escape($array[$key])) . "'";
 			}
 		}
+
 		$QryInsertAbstract .= implode(",",$QueryList);
 		$QryInsertAbstract .= " WHERE ".implode(" AND ",$WHERE)." LIMIT 1;";
+
 		if($onlyText) return $QryInsertAbstract;
+
 		$this->query($QryInsertAbstract);
-//		$this->test += microtime(true)-$m;
 	}
 
 	public function del_sql($TBName,$array,$onlyText=false) {

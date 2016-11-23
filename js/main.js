@@ -54,9 +54,7 @@ var __APP_NAME__ = "SmartSeat";
 		$httpProvider.interceptors.push(['$q', '$localStorage', 'AppConfig' , function ($q, $localStorage, AppConfig) {
 			return {
 				'request': function (config) {
-					if(config.url.substr(0, 4) == '/api') {
 						config.url = AppConfig.ajaxUrl + config.url;
-					}
 					return config;
 				},
 				'responseError': function (response) {

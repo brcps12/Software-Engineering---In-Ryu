@@ -11,7 +11,7 @@
 	function globalController($rootScope, $http, AppConfig, $stateParams) {
 		var rs = this;
 
-		$http.post('/api/currentTime')
+		
 	}
 
 })(__APP_NAME__);
