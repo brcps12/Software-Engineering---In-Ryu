@@ -34,6 +34,8 @@ class Account {
 	}
 
 	function getUser() {
+		global $db;
+		
 		if(isset($_SESSION['logged'])) {
 			$value = explode("/%/", $_SESSION['logged']);
 			$userID = $value[0];
