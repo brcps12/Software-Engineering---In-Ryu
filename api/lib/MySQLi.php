@@ -109,7 +109,7 @@ class DB_mysqli extends mysqli
 
 			$errno = $this->errno;
 
-			$this->error_query($user['userId'],"SQL Error","SQL Error: " . $this->error . "<br><br>Query Code: " . $resource);
+			$this->error_query("SQL Error","SQL Error: " . $this->error . "<br><br>Query Code: " . $resource);
 			
 			throw new \Exception("데이터베이스 에러가 발생하였습니다.", $errno);
 		}
@@ -333,7 +333,7 @@ class DB_mysqli extends mysqli
 
 			$errno = $this->errno;
 
-			$this->error_query($user['userId'],"SQL Error","SQL Error: " . $this->error . "<br><br>Query Code: " . $resource);
+			$this->error_query("SQL Error","SQL Error: " . $this->error . "<br><br>Query Code: " . $resource);
 
 			throw new \Exception("데이터베이스 에러가 발생하였습니다.", $errno);
 		}

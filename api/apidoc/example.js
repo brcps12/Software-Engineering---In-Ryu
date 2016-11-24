@@ -36,6 +36,31 @@
  */
 
 /**
+	@api {post} /api/login Register
+	@apiVersion 0.1.0
+	@apiName Register
+	@apiGroup User
+
+	@apiDescription 서버에 아이디와 이름, 비밀번호를 등록합니다.
+
+ 	@apiParam {String} username 5자리 이상 20자리 이하의 아이디(학번)
+ 	@apiParam {String} password 6자리 이상의 영소문자, 대문자, 숫자, 특수문자로 이루어진 비밀번호
+ 	@apiParam {String} name 	학생 이름
+
+	@apiSuccess {Object}	request 			요청에 대한 응답 Object
+	@apiSuccess {String}	reqeust.result 		'success' 또는 'failed'
+
+	@apiSuccessExample Success-Response:
+		{
+		  "request": {
+		    "result": "success"
+		  }
+		}
+ 
+	@apiUse ErrorMsg
+ */
+
+/**
 	@api {post} /api/login Login
 	@apiVersion 0.1.0
 	@apiName Login
@@ -57,7 +82,7 @@
 	@apiSuccessExample Success-Response:
 		{
 		  "request": {
-		    "result": "success"
+		    "result": "success",
 		    "user": {
 		      "sid": "1",
 		      "username": "2014001234",
@@ -181,6 +206,30 @@
  */
 
 /**
+	@api {post} /api/seat/reqSeatReturn Request Returns Issued Seat
+	@apiVersion 0.1.0
+	@apiName Request Seat Retuns
+	@apiGroup Seat
+
+	@apiDescription 현재 시간을 기준으로 타인이 발급한 좌석에 대해 반납 요청을 합니다.
+
+ 	@apiParam {Number} sno 좌석번호
+ 	@apiParam {Number} rid 열람실 ID
+
+	@apiSuccess {Object}	request 				요청에 대한 응답 Object
+	@apiSuccess {String}	reqeust.result 			'success' 또는 'failed'
+
+	@apiSuccessExample Success-Response:
+		{
+		  "request": {
+		    "result": "success"
+		  }
+		}
+ 
+	@apiUse ErrorMsg
+ */
+
+/**
 	@api {post} /api/seat/extend Extends Issued Seat
 	@apiVersion 0.1.0
 	@apiName Seat Extends
@@ -195,6 +244,51 @@
 		{
 		  "request": {
 		    "result": "success"
+		  }
+		}
+ 
+	@apiUse ErrorMsg
+ */
+
+/**
+	@api {post} /api/alarm/getList Get Alarm List
+	@apiVersion 0.1.0
+	@apiName Alarm List
+	@apiGroup Alarm
+
+	@apiDescription 현재 등록된 알람들을 가져옵니다.
+
+	@apiSuccess {Object}	request 				요청에 대한 응답 Object
+	@apiSuccess {String}	reqeust.result 			'success' 또는 'failed'
+	@apiSuccess {Object[]}	reqeust.list 			알람에 대한 Object Array
+	@apiSuccess {Number}	reqeust.list.alarm_id 	알람 ID
+	@apiSuccess {String}	reqeust.list.title 		해당 알람의 제목
+	@apiSuccess {String}	reqeust.list.content 	해당 알람의 내용
+	@apiSuccess {String}	reqeust.list.type	 	알람의 타입, {reqRet: 반납 요청이 들어옴, retExd: 발급 종료 30분 이전일 때}
+	@apiSuccess {Number}	reqeust.list.is_read	알람을 읽었는지의 여부
+	@apiSuccess {Number}	reqeust.notReadCnt 		읽지 않은 알람의 개수
+
+	@apiSuccessExample Success-Response:
+		{
+		  "request": {
+		    "result": "success",
+		    "list": [
+		      {
+		        "alarm_id": "1",
+		        "title": "반납 요청",
+		        "content": "반납요청이 들어왔습니다. 좌석을 사용하지 않으시다면 반납을 부탁드리겠습니다.",
+		        "type": "reqRet",
+		        "is_read": "0"
+		      },
+		      {
+		        "alarm_id": "3",
+		        "title": "반납/연장 알림",
+		        "content": "발급받으신 좌석이 발급 종료 30분 이전입니다. 사용하지 않으시면 반납을, 계속 사용하고 계시면 연장을 해주세요.",
+		        "type": "retExd",
+		        "is_read": "0"
+		      }
+		    ],
+		    "notReadCnt": "2"
 		  }
 		}
  

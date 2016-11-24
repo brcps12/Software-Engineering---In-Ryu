@@ -1,6 +1,189 @@
 define({ "api": [
   {
     "type": "post",
+    "url": "/api/alarm/getList",
+    "title": "Get Alarm List",
+    "version": "0.1.0",
+    "name": "Alarm_List",
+    "group": "Alarm",
+    "description": "<p>현재 등록된 알람들을 가져옵니다.</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "request",
+            "description": "<p>요청에 대한 응답 Object</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "reqeust.result",
+            "description": "<p>'success' 또는 'failed'</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "reqeust.list",
+            "description": "<p>알람에 대한 Object Array</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "reqeust.list.alarm_id",
+            "description": "<p>알람 ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "reqeust.list.title",
+            "description": "<p>해당 알람의 제목</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "reqeust.list.content",
+            "description": "<p>해당 알람의 내용</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "reqeust.list.type",
+            "description": "<p>알람의 타입, {reqRet: 반납 요청이 들어옴, retExd: 발급 종료 30분 이전일 때}</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "reqeust.list.is_read",
+            "description": "<p>알람을 읽었는지의 여부</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "reqeust.notReadCnt",
+            "description": "<p>읽지 않은 알람의 개수</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n \"request\": {\n    \"result\": \"success\",\n    \"list\": [\n      {\n        \"alarm_id\": \"1\",\n        \"title\": \"반납 요청\",\n        \"content\": \"반납요청이 들어왔습니다. 좌석을 사용하지 않으시다면 반납을 부탁드리겠습니다.\",\n        \"type\": \"reqRet\",\n        \"is_read\": \"0\"\n      },\n      {\n        \"alarm_id\": \"3\",\n        \"title\": \"반납/연장 알림\",\n        \"content\": \"발급받으신 좌석이 발급 종료 30분 이전입니다. 사용하지 않으시면 반납을, 계속 사용하고 계시면 연장을 해주세요.\",\n        \"type\": \"retExd\",\n        \"is_read\": \"0\"\n      }\n    ],\n    \"notReadCnt\": \"2\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "apidoc/example.js",
+    "groupTitle": "Alarm",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ServerError",
+            "description": "<p>에러메시지가 반환된다.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\t\t{\n \t\t  \"request\": {\n  \t\t    \"result\": \"failed\",\n \t\t    \"msg\": \"Specific Error Message\"\n \t\t  }\n \t\t}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/api/seat/reqSeatReturn",
+    "title": "Request Returns Issued Seat",
+    "version": "0.1.0",
+    "name": "Request_Seat_Retuns",
+    "group": "Seat",
+    "description": "<p>현재 시간을 기준으로 타인이 발급한 좌석에 대해 반납 요청을 합니다.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "sno",
+            "description": "<p>좌석번호</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "rid",
+            "description": "<p>열람실 ID</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "request",
+            "description": "<p>요청에 대한 응답 Object</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "reqeust.result",
+            "description": "<p>'success' 또는 'failed'</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n  \"request\": {\n    \"result\": \"success\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "apidoc/example.js",
+    "groupTitle": "Seat",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ServerError",
+            "description": "<p>에러메시지가 반환된다.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\t\t{\n \t\t  \"request\": {\n  \t\t    \"result\": \"failed\",\n \t\t    \"msg\": \"Specific Error Message\"\n \t\t  }\n \t\t}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
     "url": "/api/seat/extend",
     "title": "Extends Issued Seat",
     "version": "0.1.0",
@@ -437,7 +620,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n  \"request\": {\n    \"result\": \"success\"\n    \"user\": {\n      \"sid\": \"1\",\n      \"username\": \"2014001234\",\n      \"sname\": \"홍길동\",\n      \"auth\": \"0\"\n    }\n  }\n}",
+          "content": "{\n  \"request\": {\n    \"result\": \"success\",\n    \"user\": {\n      \"sid\": \"1\",\n      \"username\": \"2014001234\",\n      \"sname\": \"홍길동\",\n      \"auth\": \"0\"\n    }\n  }\n}",
           "type": "json"
         }
       ]
@@ -472,6 +655,90 @@ define({ "api": [
     "name": "Logout",
     "group": "User",
     "description": "<p>로그아웃을 합니다.</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "request",
+            "description": "<p>요청에 대한 응답 Object</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "reqeust.result",
+            "description": "<p>'success' 또는 'failed'</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n  \"request\": {\n    \"result\": \"success\"\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "apidoc/example.js",
+    "groupTitle": "User",
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ServerError",
+            "description": "<p>에러메시지가 반환된다.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\t\t{\n \t\t  \"request\": {\n  \t\t    \"result\": \"failed\",\n \t\t    \"msg\": \"Specific Error Message\"\n \t\t  }\n \t\t}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/api/login",
+    "title": "Register",
+    "version": "0.1.0",
+    "name": "Register",
+    "group": "User",
+    "description": "<p>서버에 아이디와 이름, 비밀번호를 등록합니다.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>5자리 이상 20자리 이하의 아이디(학번)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>6자리 이상의 영소문자, 대문자, 숫자, 특수문자로 이루어진 비밀번호</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>학생 이름</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
