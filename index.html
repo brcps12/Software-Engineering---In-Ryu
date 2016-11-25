@@ -6,8 +6,8 @@
 	<meta http-equiv="content-language" content="ko-KR" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
 	<meta http-equiv="Content-Style-Type" content="text/css">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<meta name="title" content="Smart Seat - 스마트한 열람실 발급">
 	<meta name="subject" content="Smart Seat - 스마트 시트">
@@ -30,67 +30,147 @@
 	<![endif]-->
 
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="/example/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+	<!-- Custom CSS -->
+	<link href="/css/animate.css" rel="stylesheet">
+
+	<!-- OWL Carousel -->
+	<link href="/css/owl.carousel.css" rel="stylesheet">
+	<link href="/css/owl.theme.css" rel="stylesheet">
+
 	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- Custom Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
 	<base href="/">
 </head>
 <body ng-controller="globalController as rs">
 
-  <nav class="navbar navbar-light bg-faded">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <ul class="nav navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline float-xs-right">
-      <input class="form-control" type="text" placeholder="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-  </nav>
+	<div class="body-wrapper">
 
-	<div class="container-fluid">
-		<div ui-view></div>
+		<!-- Start Logo Section -->
+		<section id="logo-section" class="text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="#">
+							<div class="logo text-center">
+								<h1>Smart Seat</h1>
+								<span>스마트한 열람실 좌석 발급 시스템</span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Logo Section -->
+
+		<!-- Start Main Body Section -->
+		<div class="mainbody-section text-center">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-12">
+						
+						<div class="menu-item color">
+							<a href="main" data-toggle="modal">
+								<i class="fa fa-magic"></i>
+								<p>좌석 발급</p>
+							</a>
+						</div>
+						
+					</div>
+
+				</div>
+
+				<div class="row">
+					
+					<div class="col-md-6">
+						
+						<div class="menu-item blue">
+							<a href="login" data-toggle="modal">
+								<i class="fa fa-user"></i>
+								<p>로그인</p>
+							</a>
+						</div>
+						
+					</div>
+					
+					<div class="col-md-6">
+
+						<div class="menu-item red">
+							<a href="register" data-toggle="modal">
+								<i class="fa fa-bell"></i>
+								<p>알람</p>
+							</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Main Body Section -->
+	</div>
+		
+	<div class="footer-wrapper">
+		<!-- Start Copyright Section -->
+		<div class="copyright text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div>Copyright © Smart Seat. <a href="#"> All Rights Reserved. </a> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Copyright Section -->
 	</div>
 
+	<!-- Start Feature Section -->
+	<div class="section-modal modal fade" id="route-content" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-content">
+			<a href="/">
+				<div class="close-modal">
+					<i class="fa fa-remove"></i>
+				</div>
+			</a>
+
+			<div ui-view></div>
+			
+		</div>
+	</div>
+	<!-- End Feature Section -->
 
 	<!-- jQuery Library -->
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/lib/jquery.appear.js"></script>
+	<script type="text/javascript" src="/js/lib/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="/js/lib/jqBootstrapValidation.js"></script>
+	<script type="text/javascript" src="/js/lib/modernizr.custom.js"></script>
 
 	<!-- Tether -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
 
-	<!-- Bootstrap 4 -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+	<!-- Bootstrap 3 -->
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <!-- AngularJS 1.x -->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<!-- AngularJS 1.x -->
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 
-    <!-- AngularJS library -->
-    <script type="text/javascript" src="/js/lib/angular-ui-router.min.js"></script>
-    <script type="text/javascript" src="/js/lib/ocLazyLoad.min.js"></script>
-    <script type="text/javascript" src="/js/lib/ngStorage.min.js"></script>
+	<!-- AngularJS library -->
+	<script type="text/javascript" src="/js/lib/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="/js/lib/ocLazyLoad.min.js"></script>
+	<script type="text/javascript" src="/js/lib/ngStorage.min.js"></script>
 
-    <script type="text/javascript" src="/js/main.js"></script>
-    <script type="text/javascript" src="/js/routes.js"></script>
+	<script type="text/javascript" src="/js/main.js"></script>
+	<script type="text/javascript" src="/js/routes.js"></script>
 
-    <script type="text/javascript" src="/js/controller/global.controller.js"></script>
+	<script type="text/javascript" src="/js/controller/global.controller.js"></script>
 
 </body>
 </html>

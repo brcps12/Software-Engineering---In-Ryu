@@ -1,7 +1,7 @@
 var __APP_NAME__ = "SmartSeat";
 
 
-(function(APP_NAME) {
+(function(APP_NAME, $) {
 	'use strict';
 	var myApp = angular.module(
 		APP_NAME,
@@ -64,4 +64,13 @@ var __APP_NAME__ = "SmartSeat";
 		}]);
 	}]);
 
-})(__APP_NAME__);
+	myApp.run(['$rootScope', '$location', '$state', function($rootScope, $location, $state) {
+		$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams, options) {
+			if(toState.name != 'main')
+				$('#route-content').modal("show");
+			else
+				$('#route-content').modal("hide");
+		});
+	}]);
+
+})(__APP_NAME__, jQuery);

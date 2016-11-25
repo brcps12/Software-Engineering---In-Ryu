@@ -1,4 +1,4 @@
-(function(APP_NAME) {
+(function(APP_NAME, $) {
 	
 	'use strict';
 
@@ -11,7 +11,16 @@
 	function globalController($rootScope, $http, AppConfig, $stateParams) {
 		var rs = this;
 
+
+		$("#owl-demo").owlCarousel({
+
+			slideSpeed : 300,
+			paginationSpeed : 400,
+			singleItem:true,
+			autoPlay: 3000
+
+		});
 		
 	}
 
-})(__APP_NAME__);
+})(__APP_NAME__, jQuery);
