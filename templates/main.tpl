@@ -1,5 +1,4 @@
 
-
 <!-- Start Logo Section -->
 <section id="logo-section" class="text-center">
 	<div class="container">
