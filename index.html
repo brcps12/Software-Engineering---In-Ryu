@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html data-ng-app="SmartSeat">
 <head>
+	<title>Smart Seat</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="content-language" content="ko-KR" />
@@ -52,68 +53,7 @@
 
 	<div class="body-wrapper">
 
-		<!-- Start Logo Section -->
-		<section id="logo-section" class="text-center">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<a href="#">
-							<div class="logo text-center">
-								<h1>Smart Seat</h1>
-								<span>스마트한 열람실 좌석 발급 시스템</span>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- End Logo Section -->
-
-		<!-- Start Main Body Section -->
-		<div class="mainbody-section text-center">
-			<div class="container">
-				<div class="row">
-					
-					<div class="col-md-12">
-						
-						<div class="menu-item color">
-							<a href="main" data-toggle="modal">
-								<i class="fa fa-magic"></i>
-								<p>좌석 발급</p>
-							</a>
-						</div>
-						
-					</div>
-
-				</div>
-
-				<div class="row">
-					
-					<div class="col-md-6">
-						
-						<div class="menu-item blue">
-							<a href="login" data-toggle="modal">
-								<i class="fa fa-user"></i>
-								<p>로그인</p>
-							</a>
-						</div>
-						
-					</div>
-					
-					<div class="col-md-6">
-
-						<div class="menu-item red">
-							<a href="register" data-toggle="modal">
-								<i class="fa fa-bell"></i>
-								<p>알람</p>
-							</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Main Body Section -->
+		<div ui-view class="slide"></div>
 	</div>
 		
 	<div class="footer-wrapper">
@@ -122,7 +62,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<div>Copyright © Smart Seat. <a href="#"> All Rights Reserved. </a> </div>
+						<div>
+						Copyright © Smart Seat. <a href="#"> All Rights Reserved. </a></div>
 					</div>
 				</div>
 			</div>
@@ -138,8 +79,6 @@
 					<i class="fa fa-remove"></i>
 				</div>
 			</a>
-
-			<div ui-view></div>
 			
 		</div>
 	</div>
@@ -161,6 +100,7 @@
 
 	<!-- AngularJS 1.x -->
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
 
 	<!-- AngularJS library -->
 	<script type="text/javascript" src="/js/lib/angular-ui-router.min.js"></script>

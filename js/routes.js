@@ -24,8 +24,7 @@
                     loadPlugin: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load(controllerPath + "/main.controller.js");
                     }]
-                },
-                noLoading: true
+                }
             })
             .state('login', {
                 url: '/login',
@@ -35,8 +34,7 @@
                     loadPlugin: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load(controllerPath + "/login.controller.js");
                     }]
-                },
-                noLoading: true
+                }
             })
              .state('register', {
                 url: '/register',
@@ -46,8 +44,17 @@
                     loadPlugin: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load(controllerPath + "/register.controller.js");
                     }]
-                },
-                noLoading: true
+                }
+            })
+             .state('seats', {
+                url: '/seats',
+                templateUrl: templatePath + '/seats.tpl',
+                controller: 'seatsController as rs',
+                resolve: {
+                    loadPlugin: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load(controllerPath + "/seats.controller.js");
+                    }]
+                }
             })
     }
 

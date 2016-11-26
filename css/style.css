@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    background: url(../example/images/background.jpg) no-repeat;
+    background: url(/img/background.jpg) no-repeat;
     background-attachment: fixed;
     background-size: cover;
     background-position: 50% 50%;
@@ -14,11 +14,59 @@ body {
     outline: 0;
 }
 
-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
     width: 0;
 }
 
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+[ui-view].ng-enter {
+  position: relative;
+  left: 0;
+  right: 0;
+  -webkit-transition:all .5s ease-in-out;
+    -moz-transition:all .5s ease-in-out;
+    -o-transition:all .5s ease-in-out;
+    transition:all .5s ease-in-out;
+}
+
+[ui-view].ng-leave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  -webkit-transition:all .5s ease-in-out;
+    -moz-transition:all .5s ease-in-out;
+    -o-transition:all .5s ease-in-out;
+    transition:all .5s ease-in-out;
+}
+
+[ui-view].ng-enter {
+  opacity: 0;
+}
+
+[ui-view].ng-enter-active {
+  opacity: 1;
+}
+
+[ui-view].ng-leave {
+  opacity: 1; 
+  -webkit-transform:translate3d(0, 0, 0);
+  -moz-transform:translate3d(0, 0, 0);
+  transform:translate3d(0, 0, 0);
+}
+
+[ui-view].ng-leave-active {
+  opacity: 0;
+  -webkit-transform:translate3d(-100%, 0, 0);
+  -moz-transform:translate3d(-100%, 0, 0);
+  transform:translate3d(-100%, 0, 0);
+}
+
 .body-wrapper {
+    position: relative;
     padding-bottom: 80px;
     min-height: 100%;
 }

@@ -5,7 +5,7 @@ var __APP_NAME__ = "SmartSeat";
 	'use strict';
 	var myApp = angular.module(
 		APP_NAME,
-		['ui.router', 'oc.lazyLoad', 'ngStorage'],
+		['ui.router', 'oc.lazyLoad', 'ngStorage', 'ngAnimate'],
 		function($httpProvider, $locationProvider) {
 			$httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf8';
 			$locationProvider.html5Mode(true);
@@ -65,11 +65,12 @@ var __APP_NAME__ = "SmartSeat";
 	}]);
 
 	myApp.run(['$rootScope', '$location', '$state', function($rootScope, $location, $state) {
+		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
+			$(window).scrollTop(0);
+		})
+
 		$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams, options) {
-			if(toState.name != 'main')
-				$('#route-content').modal("show");
-			else
-				$('#route-content').modal("hide");
+
 		});
 	}]);
 

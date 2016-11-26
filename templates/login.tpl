@@ -1,84 +1,38 @@
 
-
-<div class="container">
-	<div class="row">
-		<div class="section-title text-center">
-			<h3>Our Awesome Feature</h3>
-			<p>Duis aute irure dolor in reprehenderit in voluptate</p>
+<!-- Start Logo Section -->
+<section id="logo-section" class="text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<a href="#">
+					<div class="logo text-center">
+						<h1>Login</h1>
+						<span><b>스마트한 열람실 좌석 발급 시스템</b></span>
+					</div>
+				</a>
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-magic"></i>
-				<div class="feature-content">
-					<h4>Web Design</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
+</section>
+<!-- End Logo Section -->
+
+<!-- Start Main Body Section -->
+<div class="mainbody-section text-center">
+	<div class="container">
+		<form>
+			<div class="form-group">
+				<label for="exampleInputEmail1">ID</label>
+				<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter ID">
+
 			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-gift"></i>
-				<div class="feature-content">
-					<h4>Graphics Design</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
+
+			<div class="form-group">
+				<label for="exampleInputPassword1">Password</label>
+				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your Password">
 			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-wordpress"></i>
-				<div class="feature-content">
-					<h4>Wordpress Theme</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-plug"></i>
-				<div class="feature-content">
-					<h4>Wordpress Plugin</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-joomla"></i>
-				<div class="feature-content">
-					<h4>Joomla Template</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-cube"></i>
-				<div class="feature-content">
-					<h4>Joomla Extension</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-css3"></i>
-				<div class="feature-content">
-					<h4>HTML 5 & CSS3</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-android"></i>
-				<div class="feature-content">
-					<h4>Android Apps</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-	</div><!-- /.row -->
+
+			<button type="로그인" class="btn btn-color">Submit</button>
+		</form>
+	</div>
 </div>
+<!-- End Main Body Section -->
