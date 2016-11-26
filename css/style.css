@@ -1044,3 +1044,62 @@ and (max-width : 991px) {
     padding: 20px;
     color: #fff;
 }
+
+.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form .form-group i {
+    position: absolute;
+    color: #FFFFFF;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    width: 45px;
+    opacity: 0.5;
+}
+
+.login-form .form-group input{
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom:solid 2px rgba(255,255,255,0.15);
+    background-color:transparent;
+    color:#FFFFFF;
+    width:100%;
+    height:50px;
+    font-size:14px;
+    line-height:50px;
+    line-height:100%;
+    font-size:12px;
+    padding-left:50px;
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -ms-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    transition: all 250ms ease;
+}
+
+.login-form .form-group input:focus{
+    border-bottom:solid 2px #27ae60;
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -ms-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    transition: all 250ms ease;   
+}
+
+.login-form .btn {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.login-form {
+    text-align: left;
+}
+
+.login-col {
+    float: none;
+    margin: auto;
+}
