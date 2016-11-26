@@ -10,6 +10,8 @@
 
 	function loginController($rootScope, $http, AppConfig, $stateParams) {
 		var rs = this;
+
+		rs.loginstatus=false;
 	}
 
 })(__APP_NAME__);
