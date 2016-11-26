@@ -67,6 +67,17 @@
                 },
                 noLoading: true
             })
+             .state('seats', {
+                url: '/seats',
+                templateUrl: templatePath + '/seats.tpl',
+                controller: 'seatsController as rs',
+                resolve: {
+                    loadPlugin: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load(controllerPath + "/seats.controller.js");
+                    }]
+                },
+                noLoading: true
+            })
     }
 
 })(__APP_NAME__);
