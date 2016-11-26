@@ -1,4 +1,10 @@
+<div class="container">
+	<form>
+		<div class="form-group">
+			<label for="exampleInputEmail1">ID</label>
+			<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter ID">
 
+<<<<<<< HEAD
 <!-- Start Logo Section -->
 <section id="logo-section" class="text-center">
 	<div class="container">
@@ -36,3 +42,15 @@
 	</div>
 </div>
 <!-- End Main Body Section -->
+=======
+		</div>
+
+		<div class="form-group">
+			<label for="exampleInputPassword1">Password</label>
+			<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your Password">
+		</div>
+
+		<button type="로그인" class="btn btn-color">Submit</button>
+	</form>
+</div>
+>>>>>>> e76e67808e76c07cca1076f41dea6843fee95103
