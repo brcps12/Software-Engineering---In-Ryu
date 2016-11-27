@@ -56,6 +56,27 @@
                     }]
                 }
             })
+             .state('seatsView', {
+                url: '/seats/:roomId',
+                templateUrl: templatePath + '/seats/view.tpl',
+                controller: 'seatsViewController as rs',
+                resolve: {
+                    loadPlugin: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load(controllerPath + "/seats/view.controller.js");
+                    }]
+                }
+            })
+             .state('alarm', {
+                url: '/alarm',
+                templateUrl: templatePath + '/alarm.tpl',
+                controller: 'alarmController as rs',
+                resolve: {
+                    loadPlugin: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load(controllerPath + "/alarm.controller.js");
+                    }]
+                },
+                authorization: true
+            })
     }
 
 })(__APP_NAME__);
