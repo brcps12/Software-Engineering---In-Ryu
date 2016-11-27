@@ -67,7 +67,6 @@ a:hover, a:focus {
 
 .body-wrapper {
     position: relative;
-    padding-bottom: 80px;
     min-height: 100%;
 }
 
@@ -235,8 +234,6 @@ fieldset[disabled] .btn-primary.active {
 
 .menu-item {
     color: #fff;
-    padding-top: 45px;
-    padding-bottom: 45px;
     margin-bottom: 30px;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
@@ -249,6 +246,8 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .menu-item a {
+    padding-top: 45px;
+    padding-bottom: 45px;
     color: #fff;
     display: block;
 	-webkit-transition: all 0.3s;
@@ -300,7 +299,7 @@ and (max-width : 991px) {
 and (min-width : 992px) 
 and (max-width : 1199px) {
     
-    .menu-item {
+    .menu-item a {
         padding-top: 15px;
         padding-bottom: 15px;
     }
@@ -1102,4 +1101,21 @@ and (max-width : 991px) {
 .login-col {
     float: none;
     margin: auto;
+}
+
+button i {
+    padding: 0 !important;
+}
+
+.seat-btn-group {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+}
+
+.seat-btn-group .btn {
+    width: 50%;
+    height: 100px;
 }

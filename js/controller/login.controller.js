@@ -29,12 +29,6 @@
 						'error'
 					)
 				}
-			}).error(function(r) {
-				swal(
-					'Error',
-					'서버 에러가 발생하였습니다',
-					'error'
-				)
 			})
 		}
 	}
