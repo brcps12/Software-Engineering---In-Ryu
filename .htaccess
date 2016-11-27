@@ -6,6 +6,7 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
+RewriteRule ^(/)?templates/seats/map($|/.*) - [L]
 
 RewriteRule ^(/)?api/(.*)$ /api/index.php [L]
 
