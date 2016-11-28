@@ -30,7 +30,7 @@
 									<td width="15%" align="center"><font size="-1"><b>총 좌석수 : </b></font> <font color="blue"><b>186</b></font></td>
 									<td width="15%" align="center"><font size="-1"><b>사용 좌석수 : </b></font> <font color="blue"><b>33</b></font></td>
 									<td width="15%" align="center"><font size="-1"><b>잔여 좌석수 : </b></font> <font color="blue"><b>153</b></font></td>
-									<td width="20%" align="center"><font size="-1">현재 시각 {{rs.year}}-{{rs.month}}-{{rs.day}}&nbsp;&nbsp;{{rs.hour}}:{{rs.minute}}:{{rs.second}}&nbsp;</font></td>
+									<td width="20%" align="center"><font size="-1">현재 시각 {{rs.year}}-{{rs.month}}-{{rs.day}}&nbsp;&nbsp;<br>{{rs.hour}}:{{rs.minute}}:{{rs.second}}&nbsp;</font></td>
 								</tr>
 							</tbody></table>
 						</td>
