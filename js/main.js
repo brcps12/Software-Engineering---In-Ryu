@@ -50,6 +50,15 @@ moment.locale('ko');
 		};
 	});
 
+	myApp.directive('repeatDone', function() {
+		return function(scope, element, attrs) {
+			if (scope.$last) { // all are rendered
+				console.log("done")
+				scope.$eval(attrs.repeatDone);
+			}
+		}
+	})
+
 	// 요청시 토큰 붙이기
 	myApp.config(['$httpProvider', function($httpProvider) {
 

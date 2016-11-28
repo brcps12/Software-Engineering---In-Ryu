@@ -43,7 +43,6 @@ class reg {
             FROM `issue` `I`
             WHERE
                 `end_time` BETWEEN '" . $db->sql_escape($now->format("Y-m-d H:i:s")) . "' AND DATE_ADD('" . $db->sql_escape($now->format("Y-m-d H:i:s")) . "', INTERVAL 30 MINUTE)
-            AND NOT EXISTS (SELECT 1 FROM `alarm` WHERE `issue_id` = `I`.`id` LIMIT 1)
         ";
 
         $data = $db->query($query);

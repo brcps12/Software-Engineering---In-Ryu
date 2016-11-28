@@ -39,9 +39,11 @@ class getList {
                 `type`,
                 `is_read`,
                 `date`
-            FROM `alarm`
+            FROM `alarm` `A`
             WHERE
                 `sid` = '" . $db->sql_escape($user['sid']) . "'
+            ORDER BY `alarm_id` DESC
+            LIMIT 20
         ";
 
         $list = [];

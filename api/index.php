@@ -1,4 +1,6 @@
 <?php
+$path_prefix = '.';
+
 require_once ("common.php");
 require_once ("lib/AjaxStdIO.php");
 $stdio = new AjaxStdIO();

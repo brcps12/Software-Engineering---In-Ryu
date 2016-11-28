@@ -1,6 +1,4 @@
 <?php
-$path_prefix = '.';
-
 spl_autoload_register(null, false);
 spl_autoload_register(function ($class) {
 	global $path_prefix;
@@ -21,7 +19,7 @@ require_once ($path_prefix . "/lib/Account.php");
 session_start();
 header('Content-type: text/html; charset=utf-8');
 
-include("../config.php");
+include($path_prefix . "/../config.php");
 
 $db = new DB_MySQLi();
 unset($dbsettings);
