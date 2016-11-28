@@ -4,6 +4,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
+				<a class="header-back-btn" href="javascript:history.back()"> <i class="fa fa-angle-left"></i> </a>
 				<a href="/">
 					<div class="logo text-center">
 						<h1>Login</h1>

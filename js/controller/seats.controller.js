@@ -6,37 +6,40 @@
 	.module(APP_NAME)
 	.controller('seatsController', seatsController);
 
-	seatsController.$inject = ['$rootScope', '$http', 'AppConfig', '$stateParams'];
+	seatsController.$inject = ['$rootScope', '$http', 'AppConfig', '$stateParams', '$state', '$interval', '$scope'];
 
-	function seatsController($rootScope, $http, AppConfig, $stateParams) {
-		var rs = this;
-		var today = new Date();
-		rs.year=today.getYear()+1900;
-		rs.month=today.getMonth()+1;
-		rs.day=today.getDate();
-		rs.hour=ampm(today.getHours());
-		rs.minute=addzero(today.getMinutes());
-		rs.second=addzero(today.getSeconds());
-	}
+	function seatsController($rootScope, $http, AppConfig, $stateParams, $state, $interval, $scope) {
+		let rs = this;
 
-	function addzero(i){
-		if(i<10)
-		{
-			i="0"+i;
-		}
-		return i;
-	}
+		rs.currentMoment = moment();
 
-	function ampm(i){
-		if(i>=12)
-		{
-			i=i-12;
-			i="오후 "+i;
+		rs.roomList = [];
+
+		rs.go = toGo;
+
+		loadRoomList();
+		let repeat = $interval(loadRoomList, 60000);
+
+		function loadRoomList() {
+			return $http.post('/api/room/getList')
+			.success(function(r) {
+				if(r.request.result == 'success') {
+					rs.roomList = r.request.list;
+
+					for(let i = 0; i < rs.roomList; i++) {
+						rs.roomList[i].total_seats = parseInt(rs.roomList[i].total_seats);
+						rs.roomList[i].able_seats = parseInt(rs.roomList[i].able_seats);
+					}
+				}
+			})
 		}
-		else
-		{
-			i="오전 "+i;
+
+		function toGo(rid) {
+			$state.go('seatsView', {'roomId': rid});
 		}
-		return i;
+
+		$scope.$on("$destroy",function(){
+			$interval.cancel(repeat);
+		});
 	}
 })(__APP_NAME__);

@@ -6,9 +6,9 @@
 		.module(APP_NAME)
 		.controller('mainController', mainController);
 
-	mainController.$inject = ['$rootScope', '$http', 'AppConfig', '$stateParams', 'loginService'];
+	mainController.$inject = ['$rootScope', '$http', 'AppConfig', '$stateParams', 'loginService', '$scope'];
 
-	function mainController($rootScope, $http, AppConfig, $stateParams, loginService) {
+	function mainController($rootScope, $http, AppConfig, $stateParams, loginService, $scope) {
 		let rs = this;
 
 		rs.isLogged = loginService.isLogged;
@@ -71,22 +71,38 @@
 		}
 
 		function seatReturn() {
-			return $http.post('/api/seat/seatReturn')
-			.success(function(r) {
-				if(r.request.result == 'success') {
-					swal(
-						'Success',
-						"성공적으로 반납되었습니다",
-						'success'
-					)
+			let $tmpPromise;
+
+			swal({
+				title: '반납 하시겠습니까?',
+				text: "다시 예약하시려면 좌석 정보를 확인 후 이용해주세요.",
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: '반납',
+				cancelButtonText: '취소',
+				showLoaderOnConfirm: true,
+				preConfirm: function (email) {
+					return $tmpPromise = $http.post('/api/seat/seatReturn')
+				}
+			}).then(function (r) {
+				swal(
+					'Success',
+					"성공적으로 반납되었습니다",
+					'success'
+				)
+				$scope.$apply(function() {
+					rs.mySeat = false;
+				});
+			}, function(dismiss) {
+				if (dismiss === 'cancel') { // you might also handle 'close' or 'timer' if you used those
+					// ignore
 				} else {
-					swal(
-						'Failed',
-						r.request.msg,
-						'error'
-					)
+					throw dismiss;
 				}
 			})
+			return $tmpPromise;
 		}
 
 	}

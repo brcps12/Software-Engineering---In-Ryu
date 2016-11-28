@@ -70,7 +70,7 @@
 
 		<div class="row" ng-if="rs.isLogged()">
 			
-			<div class="col-md-6">
+			<div class="col-sm-6">
 				
 				<div class="menu-item blue">
 					<a href="logout" ng-click="rs.logout($event)">
@@ -81,7 +81,7 @@
 				
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-sm-6">
 
 				<div class="menu-item red">
 					<a href="alarm">
