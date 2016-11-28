@@ -30,7 +30,7 @@
 	<div class="seat-map">
 		<table class="table seat-table" style="background: white">
 			<tr ng-repeat="i in rs.loopRange(1, rs.roomInfo.rows)">
-				<td ng-repeat="j in rs.loopRange(1, rs.roomInfo.cols)" ng-class="rs.seatInfo[i][j] ? (rs.seatInfo[i][j].available == 1 ? 'able' : 'resv') : 'pass'" ng-click="rs.resv(rs.seatInfo[i][j])">
+				<td ng-repeat="j in rs.loopRange(1, rs.roomInfo.cols)" ng-class="rs.seatInfo[i][j] ? (rs.seatInfo[i][j].available == 1 ? 'able' : 'resv') : 'pass'" ng-mouseup="rs.resv($event, rs.seatInfo[i][j])">
 					{{::rs.seatInfo[i][j] ? rs.seatInfo[i][j].sno : ''}}
 				</td>
 			</tr>

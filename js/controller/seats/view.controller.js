@@ -62,8 +62,8 @@
 			})
 		}
 
-		function resv(seat) {
-
+		function resv(event, seat) {
+			console.log(event);
 			if(rs.onDrawMotion)
 				return;
 
