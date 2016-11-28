@@ -64,6 +64,14 @@ class getList {
 
             $notReadCnt = $db->uniquequery($query)['notReadCnt'];
 
+            $query = "
+                UPDATE `alarm`
+                SET `is_read` = 1 
+                WHERE
+                    `sid` = '" . $db->sql_escape($user['sid']) . "'
+            ";
+            $db->query($query);
+
         } catch(\Exception $e) {
             return [
                 'result' => 'failed',
