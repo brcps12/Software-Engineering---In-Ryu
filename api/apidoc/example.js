@@ -117,6 +117,40 @@
  */
 
 /**
+	@api {post} /api/loginCheck LoginCheck
+	@apiVersion 0.1.0
+	@apiName LoginCheck
+	@apiGroup User
+
+	@apiDescription 로그인이 되어있는지 체크합니다.
+
+	@apiSuccess {Object}	request 			요청에 대한 응답 Object
+	@apiSuccess {String}	reqeust.result 		'success' 또는 'failed'
+	@apiSuccess {String}	reqeust.msg 		'logged' 또는 'loggedOut'
+	@apiSuccess {Object}	[reqeust.user] 		유저에 대한 정보
+	@apiSuccess {Number}	reqeust.user.sid	User ID
+	@apiSuccess {String}	reqeust.user.uesrname	Username (학번 혹은 아이디)
+	@apiSuccess {String}	reqeust.user.sname	학생 이름
+	@apiSuccess {Number}	reqeust.user.auth	권한 (0은 학생, 1은 관리자)
+
+	@apiSuccessExample Success-Response:
+		{
+		  "request": {
+		    "result": "success",
+		    "msg": "logged",
+		    "user": {
+		      "sid": "1",
+		      "username": "2014001234",
+		      "sname": "홍길동",
+		      "auth": "0"
+		    }
+		  }
+		}
+ 
+	@apiUse ErrorMsg
+ */
+
+/**
 	@api {post} /api/seat/issue Seat Issue
 	@apiVersion 0.1.0
 	@apiName Seat Issue
@@ -178,6 +212,36 @@
 		        "available": "1"
 		      }
 		    ]
+		  }
+		}
+ 
+	@apiUse ErrorMsg
+ */
+
+/**
+	@api {post} /api/seat/mySeat Get My Seat Information
+	@apiVersion 0.1.0
+	@apiName My Seat Info
+	@apiGroup Seat
+
+	@apiDescription 현재 시간을 기준으로 발급된 좌석에 대한 정보를 가져옵니다.
+
+	@apiSuccess {Object}	request 				요청에 대한 응답 Object
+	@apiSuccess {String}	reqeust.result 			'success' 또는 'failed'
+	@apiSuccess {Object}	reqeust.info 			좌석들에 대한 정보를 담은 Object, 좌석이 발급되지 않았다면 null
+	@apiSuccess {Number}	reqeust.info.sno 		좌석 번호
+	@apiSuccess {String}	reqeust.info.rname 		열람실의 이름
+	@apiSuccess {String}	reqeust.info.end_time	해당 좌석의 발급 종료 시간
+
+	@apiSuccessExample Success-Response:
+		{
+		  "request": {
+		    "result": "success",
+		    "info": {
+		      "sno": "1",
+		      "rname": "법학학술정보관 - 제1열람실 3층",
+		      "end_time": "22시 25분"
+		    }
 		  }
 		}
  
@@ -289,6 +353,41 @@
 		      }
 		    ],
 		    "notReadCnt": "2"
+		  }
+		}
+ 
+	@apiUse ErrorMsg
+ */
+
+
+/**
+	@api {post} /api/room/getList Get Reading Room List
+	@apiVersion 0.1.0
+	@apiName Reading Room List
+	@apiGroup Room
+
+	@apiDescription 서버에 등록된 열람실의 리스트를 가져옵니다.
+
+	@apiSuccess {Object}	request 					요청에 대한 응답 Object
+	@apiSuccess {String}	reqeust.result 				'success' 또는 'failed'
+	@apiSuccess {Object[]}	reqeust.list 				열람실에 대한 Object Array
+	@apiSuccess {Number}	reqeust.list.rid			열람실 ID
+	@apiSuccess {String}	reqeust.list.rname 			열람실 이름
+	@apiSuccess {Number}	reqeust.list.total_seats	열람실의 총 좌석수
+	@apiSuccess {Number}	reqeust.list.able_seats		열람실의 발급 가능한 좌석수
+
+	@apiSuccessExample Success-Response:
+		{
+		  "request": {
+		    "result": "success",
+		    "list": [
+		      {
+		        "rid": "1",
+		        "rname": "법학학술정보관 - 제1열람실 3층",
+		        "total_seats": "31",
+		        "able_seats": "30"
+		      }
+		    ]
 		  }
 		}
  
