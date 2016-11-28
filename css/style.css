@@ -1116,6 +1116,7 @@ button i {
     height: 100px;
 }
 
+.seat-map-container,
 .alarm.container {
     background: #FFF;
     margin-top: 30px;
@@ -1319,4 +1320,92 @@ button i {
     .header-back-btn {
         top: 0;
     }
+}
+
+.seat-map-container {
+    position: relative;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+    height: 70vh;
+}
+
+.seat-map {
+    padding-top: 200px;
+    overflow: visible;
+    display: table;
+    padding-left: 200px;
+    padding-right: 100px;
+    padding-bottom: 100px;
+}
+
+.seat-map .seat-table {
+}
+
+.seat-table td {
+    text-align: center;
+    border: 2px solid #FFF !important;
+    cursor: pointer;
+}
+
+.seat-table td.able {
+    background: #00cdfb;
+}
+.seat-table td.pass {
+    background: white;
+}
+.seat-table td.resv {
+    background: red;
+}
+
+.seat-map-container .overlap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    overflow: hidden;
+    padding: 20px;
+    padding-top: 20px;
+
+    z-index: 1000;
+
+    width: 270px;
+    height: 180px;
+}
+
+@media only screen and (max-width : 460px) {
+    .seat-map-container .overlap {
+        width: 200px;
+        height: 120px;
+    }
+}
+
+.seat-map-container .overlap-window {
+    border: 2px solid #FFF;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1001;
+}
+
+.seat-map-container .overlap .table {
+    table-layout: fixed;
+    height: 100%;
+}
+
+.seat-map-container .overlap .table td {
+    padding: 0;
+    border: 1px solid #000;
+}
+
+.seat-map-container .overlap .table td.able {
+    background: #00cdfb;
+}
+.seat-map-container .overlap .table td.pass {
+    background: black;
+}
+.seat-map-container .overlap .table td.resv {
+    background: red;
 }

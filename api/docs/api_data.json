@@ -456,6 +456,20 @@
           },
           {
             "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "reqeust.cols",
+            "description": "<p>열람실의 가로 크기</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "reqeust.rows",
+            "description": "<p>열람실의 세로 크기</p>"
+          },
+          {
+            "group": "Success 200",
             "type": "Object[]",
             "optional": false,
             "field": "reqeust.info",
@@ -481,13 +495,27 @@
             "optional": false,
             "field": "reqeust.info.available",
             "description": "<p>해당 좌석이 발급 가능한지 여부 (0: 발급 불가능, 1: 발급 가능)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "reqeust.info.col",
+            "description": "<p>해당 좌석의 위치 (x)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "reqeust.info.row",
+            "description": "<p>해당 좌석의 위치 (y)</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n  \"request\": {\n    \"result\": \"success\",\n    \"info\": [\n      {\n        \"sno\": \"1\",\n        \"rid\": \"1\",\n        \"available\": \"0\"\n      },\n      {\n        \"sno\": \"2\",\n        \"rid\": \"1\",\n        \"available\": \"0\"\n      },\n      {\n        \"sno\": \"3\",\n        \"rid\": \"1\",\n        \"available\": \"1\"\n      }\n    ]\n  }\n}",
+          "content": "{\n  \"request\": {\n    \"result\": \"success\",\n    \"cols\": \"2\",\n    \"rows\": \"2\",\n    \"info\": [\n      {\n        \"sno\": \"1\",\n        \"rid\": \"1\",\n        \"available\": \"0\",\n        \"col\": \"1\",\n        \"row\": \"1\"\n      },\n      {\n        \"sno\": \"2\",\n        \"rid\": \"1\",\n        \"available\": \"0\",\n        \"col\": \"2\",\n        \"row\": \"1\"\n      },\n      {\n        \"sno\": \"3\",\n        \"rid\": \"1\",\n        \"available\": \"1\",\n        \"col\": \"1\",\n        \"row\": \"2\"\n      }\n    ]\n  }\n}",
           "type": "json"
         }
       ]

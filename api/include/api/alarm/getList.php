@@ -37,7 +37,8 @@ class getList {
                 `title`,
                 `content`,
                 `type`,
-                `is_read`
+                `is_read`,
+                `date`
             FROM `alarm`
             WHERE
                 `sid` = '" . $db->sql_escape($user['sid']) . "'

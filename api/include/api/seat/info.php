@@ -46,6 +46,8 @@ class info {
                 SELECT
                     `seat_no` AS `sno`,
                     `rid`,
+                    `col`,
+                    `row`,
                     IF(EXISTS(
                             SELECT 1 FROM `issue`
                             WHERE 
@@ -68,6 +70,20 @@ class info {
             while($row = $db->fetch_assoc($data)) {
                 $info[] = $row;
             }
+
+            $query = "
+                SELECT
+                    `rows`,
+                    `cols`
+                FROM `reading_room`
+                WHERE
+                    `rid` = '" . $db->sql_escape($rid) . "'
+            ";
+
+            $data = $db->uniquequery($query);
+
+            $rows = $data['rows'];
+            $cols = $data['cols'];
         } catch(\Exception $e) {
             return [
                 'result' => 'failed',
@@ -77,6 +93,8 @@ class info {
 
         return [
             'result' => 'success',
+            'rows' => $rows,
+            'cols' => $cols,
             'info' => $info
         ];
     }

@@ -17,6 +17,23 @@
 	</div>
 </section>
 <!-- End Logo Section -->
-<div class="container">
-	<div class="seat-map"></div>
+<div class="container seat-map-container">
+	<div class="overlap">
+		<table class="table seat-table-minimap">
+			<tr ng-repeat="i in rs.loopRange(1, rs.roomInfo.rows)">
+				<td ng-repeat="j in rs.loopRange(1, rs.roomInfo.cols)" ng-class="rs.seatInfo[i][j] ? (rs.seatInfo[i][j].available == 1 ? 'able' : 'resv') : 'pass'">
+				</td>
+			</tr>
+		</table>
+		<div class="overlap-window"></div>
+	</div>
+	<div class="seat-map">
+		<table class="table seat-table" style="background: white">
+			<tr ng-repeat="i in rs.loopRange(1, rs.roomInfo.rows)">
+				<td ng-repeat="j in rs.loopRange(1, rs.roomInfo.cols)" ng-class="rs.seatInfo[i][j] ? (rs.seatInfo[i][j].available == 1 ? 'able' : 'resv') : 'pass'" ng-click="rs.resv(rs.seatInfo[i][j])">
+					{{::rs.seatInfo[i][j] ? rs.seatInfo[i][j].sno : ''}}
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>

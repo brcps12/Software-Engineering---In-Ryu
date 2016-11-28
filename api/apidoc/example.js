@@ -186,30 +186,42 @@
 
 	@apiSuccess {Object}	request 				요청에 대한 응답 Object
 	@apiSuccess {String}	reqeust.result 			'success' 또는 'failed'
+	@apiSuccess {Number}	reqeust.cols	 		열람실의 가로 크기
+	@apiSuccess {Number}	reqeust.rows	 		열람실의 세로 크기
 	@apiSuccess {Object[]}	reqeust.info 			좌석들에 대한 정보를 담은 Object Array
 	@apiSuccess {Number}	reqeust.info.sno 		좌석 번호
 	@apiSuccess {Number}	reqeust.info.rid 		열람실 ID
 	@apiSuccess {Number}	reqeust.info.available 	해당 좌석이 발급 가능한지 여부 (0: 발급 불가능, 1: 발급 가능)
+	@apiSuccess {Number}	reqeust.info.col	 	해당 좌석의 위치 (x)
+	@apiSuccess {Number}	reqeust.info.row	 	해당 좌석의 위치 (y)
 
 	@apiSuccessExample Success-Response:
 		{
 		  "request": {
 		    "result": "success",
+		    "cols": "2",
+		    "rows": "2",
 		    "info": [
 		      {
 		        "sno": "1",
 		        "rid": "1",
-		        "available": "0"
+		        "available": "0",
+		        "col": "1",
+		        "row": "1"
 		      },
 		      {
 		        "sno": "2",
 		        "rid": "1",
-		        "available": "0"
+		        "available": "0",
+		        "col": "2",
+		        "row": "1"
 		      },
 		      {
 		        "sno": "3",
 		        "rid": "1",
-		        "available": "1"
+		        "available": "1",
+		        "col": "1",
+		        "row": "2"
 		      }
 		    ]
 		  }
