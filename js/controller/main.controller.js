@@ -39,7 +39,6 @@
 			return $http.post('/api/logout')
 			.success(function(r) {
 				if(r.request.result == 'success') {
-					loginService.logout();
 					$rootScope.$broadcast('logoutSuccess');
 				}
 				else {

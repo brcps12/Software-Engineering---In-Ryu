@@ -70,40 +70,60 @@ var __APP_NAME__ = "SmartSeat";
 		}]);
 	}]);
 
-	myApp.factory('loginService', ['$localStorage', '$rootScope', function($localStorage, $rootScope) {
+	myApp.factory('loginService', ['$localStorage', '$rootScope', '$http', function($localStorage, $rootScope, $http) {
 		return {
-			isLogged: function() {
-				return $localStorage.logged == true;
-			},
+			isLogged: isLogged,
+			logout: logout,
+			getUser: getUser,
+			loginCheck: loginCheck,
+			addUser: addUser
+		}
 
-			logout: function() {
-				delete $localStorage.logged
-				delete $localStorage.sid
-				delete $localStorage.username
-				delete $localStorage.sname
-				delete $localStorage.auth
+		function isLogged() {
+			return $localStorage.logged == true;
+		}
 
-				$rootScope.$on("logout");
-			},
-			getUser: function() {
-				return {
-					sid: $localStorage.sid,
-					username: $localStorage.username,
-					sname: $localStorage.sname,
-					auth: $localStorage.auth
-				}
-			},
-			addUser: function(user) {
-				$localStorage.logged = true;
-				$localStorage.sid = user.sid;
-				$localStorage.username = user.username;
-				$localStorage.sname = user.sname;
-				$localStorage.auth = user.auth;
+		function logout() {
+			delete $localStorage.logged
+			delete $localStorage.sid
+			delete $localStorage.username
+			delete $localStorage.sname
+			delete $localStorage.auth
+
+			$rootScope.$on("logout");
+		}
+
+		function getUser() {
+			return {
+				sid: $localStorage.sid,
+				username: $localStorage.username,
+				sname: $localStorage.sname,
+				auth: $localStorage.auth
 			}
+		}
+
+		function loginCheck() {
+			return $http.post('/api/loginCheck')
+				.success(function(r) {
+					if(r.request.result == 'success') {
+						if(r.request.msg == 'logged')
+							addUser(r.request.user);
+						else
+							logout();
+					}
+				})
+		}
+
+		function addUser(user) {
+			$localStorage.logged = true;
+			$localStorage.sid = user.sid;
+			$localStorage.username = user.username;
+			$localStorage.sname = user.sname;
+			$localStorage.auth = user.auth;
 		}
 	}]);
 
-	myApp.run(['$rootScope', '$location', '$state', 'loginService', function($rootScope, $location, $state, loginService) {
+	myApp.run(['$rootScope', '$location', '$state', 'loginService', '$http', function($rootScope, $location, $state, loginService, $http) {
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
 			$(window).scrollTop(0);
 
@@ -113,7 +133,14 @@ var __APP_NAME__ = "SmartSeat";
 			}
 			if(toState.authorization && !loginService.isLogged()) {
 				event.preventDefault();
-				$state.go('login');
+				loginService.loginCheck().success(function(r) {
+					if(r.request.result == 'success') {
+						if(r.request.msg == 'logged')
+							$state.go(toState.name);
+						else
+							$state.go('login')
+					}
+				})
 			}
 		})
 
@@ -123,6 +150,12 @@ var __APP_NAME__ = "SmartSeat";
 		$rootScope.$on('loginSuccess', function() {
 			$state.go('main');
 		});
+
+		$rootScope.$on('logoutSuccess', function() {
+			loginService.logout();
+		});
+
+		loginService.loginCheck();
 
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 	}]);
