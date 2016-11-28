@@ -1,5 +1,6 @@
 var __APP_NAME__ = "SmartSeat";
 
+moment.locale('ko');
 
 (function(APP_NAME, $) {
 	'use strict';
