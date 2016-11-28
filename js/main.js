@@ -159,6 +159,33 @@ moment.locale('ko');
 		loginService.loginCheck();
 
 		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+
+
+		$rootScope.loopRange = loopRange;
+
+		function loopRange(min, max, step) {
+			step = step || 1;
+			var input = [];
+
+			if(min < max && step < 0) {
+			  return [];
+			}
+
+			if(min > max && step > 0) {
+			  return [];
+			}
+
+			if(min <= max) {
+			  for (var i = min; i <= max; i += step) {
+				  input.push(i);
+			  }
+			} else {
+			  for (var i = min; i >= max; i += step) {
+				  input.push(i);
+			  }
+			}
+			return input;
+	  	}
 	}]);
 
 })(__APP_NAME__, jQuery);
