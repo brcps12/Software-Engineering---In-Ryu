@@ -71,7 +71,7 @@ class extend {
             $query = "
                 UPDATE `issue`
                 SET
-                    `end_time` = DATE_ADD(`end_time`, INTERVAL 3 HOUR)
+                    `end_time` = DATE_ADD(`end_time`, INTERVAL 6 HOUR)
                 WHERE 
                     `sid` = '" . $db->sql_escape($user['sid']) . "'
                 AND '" . $db->sql_escape($now->format("Y-m-d H:i:s")) . "' BETWEEN `start_time` AND `end_time`

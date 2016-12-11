@@ -5,7 +5,7 @@
 			<div class="col-md-12">
 				<a href="#">
 					<div class="logo text-center">
-						<h1>Smart Seat</h1>
+						<div class="logo-img"></div>
 						<span><b>스마트한 열람실 좌석 발급 시스템</b></span>
 					</div>
 				</a>
@@ -47,6 +47,20 @@
 			</div>
 		</div>
 
+		<div class="row" ng-if="!rs.isLogged()">
+			
+			<div class="col-md-12">
+				
+				<div class="menu-item green">
+					<a href="register">
+						<i class="fa fa-user"></i>
+						<p>회원가입</p>
+					</a>
+				</div>
+				
+			</div>
+		</div>
+
 		<div class="row" ng-if="rs.isLogged()">
 			
 			<div class="col-md-12">
@@ -71,6 +85,18 @@
 		<div class="row" ng-if="rs.isLogged()">
 			
 			<div class="col-sm-6">
+
+				<div class="menu-item red">
+					<a href="alarm">
+						<i class="fa fa-bell"></i>
+						<p>알람</p>
+						<i class="new-mark"> {{rs.alarmCnt}} </i>
+					</a>
+				</div>
+
+			</div>
+			
+			<div class="col-sm-6">
 				
 				<div class="menu-item blue">
 					<a href="logout" ng-click="rs.logout($event)">
@@ -79,17 +105,6 @@
 					</a>
 				</div>
 				
-			</div>
-			
-			<div class="col-sm-6">
-
-				<div class="menu-item red">
-					<a href="alarm">
-						<i class="fa fa-bell"></i>
-						<p>알람</p>
-					</a>
-				</div>
-
 			</div>
 		</div>
 	</div>

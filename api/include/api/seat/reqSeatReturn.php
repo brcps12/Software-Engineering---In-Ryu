@@ -72,7 +72,7 @@ class reqSeatReturn {
 				";
 
 				if(!$db->uniquequery($query)) {
-					\api\alarm\reg::regAlarm("반납 요청", "반납요청이 들어왔습니다. 좌석을 사용하지 않으시다면 반납을 부탁드리겠습니다.", "reqRet", $sid, $user['sid'], $issue_id);
+					\api\alarm\reg::regAlarm("반납 요청", "반납요청이 들어왔습니다. 좌석을 사용하지 않으시면 반납을 부탁드리겠습니다.", "reqRet", $sid, $user['sid'], $issue_id);
 				}
 			}
 		} catch(\Exception $e) {

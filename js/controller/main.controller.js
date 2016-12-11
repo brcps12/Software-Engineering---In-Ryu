@@ -6,9 +6,9 @@
 		.module(APP_NAME)
 		.controller('mainController', mainController);
 
-	mainController.$inject = ['$rootScope', '$http', 'AppConfig', '$stateParams', 'loginService', '$scope'];
+	mainController.$inject = ['$rootScope', '$http', 'AppConfig', '$stateParams', 'loginService', '$scope', '$q'];
 
-	function mainController($rootScope, $http, AppConfig, $stateParams, loginService, $scope) {
+	function mainController($rootScope, $http, AppConfig, $stateParams, loginService, $scope, $q) {
 		let rs = this;
 
 		rs.isLogged = loginService.isLogged;
@@ -19,17 +19,21 @@
 		rs.seatReturn = seatReturn;
 
 		rs.mySeat = false;
+		rs.alarmCnt = 0;
 
 		initialize();
 
 		function initialize() {
 			if(rs.isLogged()) {
-				return $http.post('/api/seat/mySeat')
-				.success(function(r) {
-					if(r.request.result == 'success') {
-						rs.mySeat = r.request.info;
-					}
-				})
+				return $q.all([
+					$http.post('/api/seat/mySeat')
+					.success(function(r) {
+						if(r.request.result == 'success') {
+							rs.mySeat = r.request.info;
+						}
+					}), 
+					loadAlarmList()
+				]);
 			}
 		}
 
@@ -60,6 +64,7 @@
 						"성공적으로 연장되었습니다",
 						'success'
 					)
+					initialize();
 				} else {
 					swal(
 						'Failed',
@@ -103,6 +108,18 @@
 				}
 			})
 			return $tmpPromise;
+		}
+
+		function loadAlarmList() {
+			return $http.post('/api/alarm/getList', {
+				type: 'main'
+			})
+
+			.success(function(r) {
+				if(r.request.result == 'success') {
+					rs.alarmCnt = r.request.notReadCnt;
+				}
+			})
 		}
 
 	}

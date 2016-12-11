@@ -6,7 +6,7 @@
 				<a class="header-back-btn" href="javascript:history.back()"> <i class="fa fa-angle-left"></i> </a>
 				<a href="main">
 					<div class="logo text-center">
-						<h1>Smart Seat</h1>
+						<div class="logo-img"></div>
 					</div>
 				</a>
 				<div class="logo text-center">	
@@ -37,7 +37,7 @@
 				<td class="mobile-hidden"> {{::(room.total_seats - room.able_seats)}} </td>
 				<td class="mobile-hidden"> {{::room.able_seats}} </td>
 				<td class="mobile-hidden"> {{::((room.total_seats - room.able_seats) / room.total_seats * 100).toFixed(2)}} % </td>
-				<td class="mobile-show"> {{::room.total_seats}}/{{::room.able_seats}} </td>
+				<td class="mobile-show"> {{::room.able_seats}}/{{::room.total_seats}} </td>
 			</tr>
 		</tbody>
 	</table>

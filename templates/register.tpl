@@ -1,84 +1,58 @@
 
-
-<div class="container">
-	<div class="row">
-		<div class="section-title text-center">
-			<h3>Our Awesome Feature</h3>
-			<p>Duis aute irure dolor in reprehenderit in voluptate</p>
+<!-- Start Logo Section -->
+<section id="logo-section" class="text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<a class="header-back-btn" href="javascript:history.back()"> <i class="fa fa-angle-left"></i> </a>
+				<a href="/">
+					<div class="logo text-center">
+						<div class="logo-img"></div>
+						<span><b>회원가입</b></span>
+					</div>
+				</a>
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-magic"></i>
-				<div class="feature-content">
-					<h4>Web Design</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
+</section>
+<!-- End Logo Section -->
+
+<!-- Start Main Body Section -->
+<div class="mainbody-section text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 login-col">
+				<form class="login-form" ng-submit="rs.register()">
+					<div class="form-group">
+						<i class="fa fa-id-card"></i>
+						<input type="text" class="form-control" ng-model="rs.name" placeholder="Type Your Name" required data-validation-required-message="이름를 입력해주세요">
+
+					</div>
+
+					<div class="form-group">
+						<i class="fa fa-user"></i>
+						<input type="text" class="form-control" ng-model="rs.username" placeholder="Type Your ID" required data-validation-required-message="아이디를 입력해주세요">
+
+					</div>
+
+					<div class="form-group">
+						<i class="fa fa-lock"></i>
+						<input type="password" class="form-control" ng-model="rs.password" placeholder="Type Your Password" required data-validation-required-message="패스워드를 입력해주세요">
+					</div>
+
+					<div class="form-group">
+						<i class="fa fa-lock"></i>
+						<input type="password" class="form-control" ng-model="rs.password2" placeholder="Password Confirm" required data-validation-required-message="패스워드를 다시 입력해주세요">
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">
+							회원가입
+						</button>
+					</div>
+				</form>
 			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-gift"></i>
-				<div class="feature-content">
-					<h4>Graphics Design</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-wordpress"></i>
-				<div class="feature-content">
-					<h4>Wordpress Theme</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-plug"></i>
-				<div class="feature-content">
-					<h4>Wordpress Plugin</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-joomla"></i>
-				<div class="feature-content">
-					<h4>Joomla Template</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-cube"></i>
-				<div class="feature-content">
-					<h4>Joomla Extension</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-css3"></i>
-				<div class="feature-content">
-					<h4>HTML 5 & CSS3</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<div class="feature">
-				<i class="fa fa-android"></i>
-				<div class="feature-content">
-					<h4>Android Apps</h4>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor. reprehenderit</p>
-				</div>
-			</div>
-		</div><!-- /.col-md-3 -->
-	</div><!-- /.row -->
+		</div>
+	</div>
 </div>
+<!-- End Main Body Section -->

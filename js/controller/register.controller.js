@@ -11,15 +11,40 @@
 	function registerController($rootScope, $http, AppConfig, $stateParams) {
 		var rs = this;
 
-		rs.message = [
-			'1번고객',
-			'2번고객',
-			'3번고객',
-			'4번고객',
-		];
+		rs.register = register;
 
-		rs.test = false;
-		rs.test2 = true;
+		function register() {
+			if(rs.password != rs.password2) {
+				swal(
+					'Error',
+					'패스워드가 서로 일치하지 않습니다.',
+					'error'
+				)
+				return null;
+			}
+
+			return $http.post('/api/register', {
+				name: rs.name,
+				username: rs.username,
+				password: rs.password
+			}).success(function(r) {
+				if(r.request.result == 'success') {
+					swal(
+						'Success',
+						'가입 되었습니다.',
+						'success'
+					);
+
+					history.back();
+				} else {
+					swal(
+						'Error',
+						r.request.msg,
+						'error'
+					)
+				}
+			})
+		}
 	}
 
 })(__APP_NAME__);

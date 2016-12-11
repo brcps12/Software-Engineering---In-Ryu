@@ -7,8 +7,8 @@
 				<a class="header-back-btn" href="javascript:history.back()"> <i class="fa fa-angle-left"></i> </a>
 				<a href="/">
 					<div class="logo text-center">
-						<h1>Login</h1>
-						<span><b>스마트한 열람실 좌석 발급 시스템</b></span>
+						<div class="logo-img"></div>
+						<span><b>로그인</b></span>
 					</div>
 				</a>
 			</div>

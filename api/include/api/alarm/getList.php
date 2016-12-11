@@ -23,11 +23,37 @@ class getList {
     function post() {
         global $stdio, $db, $account;
 
+        $type = $stdio->getParam('type');
+
         if(!($user = $account->getUser())) {
             $account->logout();
             return [
                 'result' => 'failed',
                 'msg' => '로그인을 해주시기 바랍니다.'
+            ];
+        }
+
+        $now = new \DateTime();
+
+        if($type == 'main') {
+            $query = "
+                SELECT
+                    COUNT(*) AS `notReadCnt`
+                FROM `alarm` `A`
+                    INNER JOIN `issue` `B`
+                    ON `B`.`id` = `A`.`issue_id`
+                    AND `start_time` <= '" . $db->sql_escape($now->format('Y-m-d H:i:s')) . "'
+                    AND `end_time` >= '" . $db->sql_escape($now->format('Y-m-d H:i:s')) . "'
+                WHERE
+                    `A`.`sid` = '" . $db->sql_escape($user['sid']) . "'
+                AND `is_read` = 0
+            ";
+
+            $notReadCnt = $db->uniquequery($query)['notReadCnt'];
+
+            return [
+                'result' => 'success',
+                'notReadCnt' => $notReadCnt
             ];
         }
 
@@ -40,8 +66,12 @@ class getList {
                 `is_read`,
                 `date`
             FROM `alarm` `A`
+                INNER JOIN `issue` `B`
+                ON `B`.`id` = `A`.`issue_id`
+                AND `start_time` <= '" . $db->sql_escape($now->format('Y-m-d H:i:s')) . "'
+                AND `end_time` >= '" . $db->sql_escape($now->format('Y-m-d H:i:s')) . "'
             WHERE
-                `sid` = '" . $db->sql_escape($user['sid']) . "'
+                `A`.`sid` = '" . $db->sql_escape($user['sid']) . "'
             ORDER BY `alarm_id` DESC
             LIMIT 20
         ";
@@ -59,9 +89,13 @@ class getList {
             $query = "
                 SELECT
                     COUNT(*) AS `notReadCnt`
-                FROM `alarm`
+                FROM `alarm` `A`
+                    INNER JOIN `issue` `B`
+                    ON `B`.`id` = `A`.`issue_id`
+                    AND `start_time` <= '" . $db->sql_escape($now->format('Y-m-d H:i:s')) . "'
+                    AND `end_time` >= '" . $db->sql_escape($now->format('Y-m-d H:i:s')) . "'
                 WHERE
-                    `sid` = '" . $db->sql_escape($user['sid']) . "'
+                    `A`.`sid` = '" . $db->sql_escape($user['sid']) . "'
                 AND `is_read` = 0
             ";
 

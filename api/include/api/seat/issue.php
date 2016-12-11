@@ -100,7 +100,7 @@ class issue {
                 'issue',
                 [
                     'start_time' => $now->format("Y-m-d H:i:s"),
-                    'end_time' => $now->modify("+3 hour")->format("Y-m-d H:i:s"),
+                    'end_time' => $now->modify("+6 hour")->format("Y-m-d H:i:s"),
                     'sid' => $user['sid'],
                     'seat_id' => $seat_id,
                 ]
